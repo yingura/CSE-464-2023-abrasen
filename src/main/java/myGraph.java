@@ -19,6 +19,8 @@ import java.nio.file.Paths;
 public class myGraph {
     static Graph<String, DefaultEdge> graph;
 
+    // Output the number of nodes, the label of the nodes, the number of edges,
+    // the nodes and the edge direction of edges
     @Override
     public String toString() {
         return ("Number of nodes: " + graph.vertexSet().size() + "\n" +
@@ -27,18 +29,12 @@ public class myGraph {
                 "Nodes and edge directions: " + (graph.edgeSet() + "").replace(":", "->"));
     }
 
+    // Empty main function
     public static void main(String[] args) throws IOException {
-        parseGraph("C:\\Users\\sakur\\Downloads\\test.txt");
 
-        System.out.println(new myGraph());
-
-        outputGraph("C:\\Users\\sakur\\Downloads\\output.txt");
-
-        outputDOTGraph("C:\\Users\\sakur\\Downloads\\graph.dot");
-
-        outputGraphics("C:\\Users\\sakur\\Downloads\\image.jpg", "JPG");
     }
 
+    // Accept a DOT graph file to create a graph
     public static void parseGraph(String filepath) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filepath)));
 
@@ -48,6 +44,7 @@ public class myGraph {
         importer.importGraph(graph, new StringReader(content));
     }
 
+    // Output graph to file
     public static void outputGraph(String filepath) throws IOException {
         String content = (new myGraph()).toString();
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filepath));
@@ -55,38 +52,45 @@ public class myGraph {
         bufferedWriter.close();
     }
 
+    // Add a node and check for duplicate labels
     public static void addNode(String label) {
         if(!graph.vertexSet().contains(label)) {
             graph.addVertex(label);
         }
     }
 
+    // Remove a node
     public static void removeNode(String label) {
         graph.removeVertex(label);
     }
 
+    // Add a list of nodes
     public static void addNodes(String[] label) {
         for(int i = 0; i < label.length; i++){
             addNode(label[i]);
         }
     }
 
+    // Remove a list of nodes
     public static void removeNodes(String[] label) {
         for(int i = 0; i < label.length; i++) {
             removeNode(label[i]);
         }
     }
 
+    // Add an edge and check for duplicate edges
     public static void addEdge(String srcLabel, String dstLabel) {
         if(!graph.containsEdge(srcLabel, dstLabel)) {
             graph.addEdge(srcLabel, dstLabel);
         }
     }
 
+    // Remove an edge
     public static void removeEdge(String srcLabel, String dstLabel) {
         graph.removeEdge(srcLabel, dstLabel);
     }
 
+    // Output the imported graph into a DOT file
     public static void outputDOTGraph(String path) throws IOException {
         DOTExporter<String, DefaultEdge> exporter = new DOTExporter<>();
         Writer writer = new StringWriter();
@@ -97,6 +101,7 @@ public class myGraph {
         bufferedWriter.close();
     }
 
+    // Output the imported graph into a graphics
     public static void outputGraphics(String path, String format) throws IOException {
         JGraphXAdapter mxGraph = new JGraphXAdapter(graph);
         mxIGraphLayout layout = new mxCircleLayout(mxGraph);
