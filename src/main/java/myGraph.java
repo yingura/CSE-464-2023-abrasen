@@ -79,4 +79,14 @@ public class myGraph {
         }
     }
 
+    public static void addEdge(String srcLabel, String dstLabel) {
+        if(!graph.containsEdge(srcLabel, dstLabel)) {
+            graph.addEdge(srcLabel, dstLabel);
+        }
+    }
+
+    public static void removeEdge(String srcLabel, String dstLabel) {
+        graph.removeEdge(srcLabel, dstLabel);
+    }
+
 }
