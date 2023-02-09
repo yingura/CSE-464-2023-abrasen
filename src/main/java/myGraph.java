@@ -49,11 +49,9 @@ public class myGraph {
     }
 
     public static void outputGraph(String filepath) throws IOException {
-        DOTExporter<String, DefaultEdge> exporter = new DOTExporter<>();
-        Writer writer = new StringWriter();
-        exporter.exportGraph(graph, writer);
+        String content = (new myGraph(graph)).toString();
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filepath));
-        bufferedWriter.write(writer.toString());
+        bufferedWriter.write(content);
         bufferedWriter.close();
     }
 
