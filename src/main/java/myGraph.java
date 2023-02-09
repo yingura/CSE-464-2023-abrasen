@@ -1,9 +1,17 @@
+import com.mxgraph.layout.mxCircleLayout;
+import com.mxgraph.layout.mxIGraphLayout;
+import com.mxgraph.util.mxCellRenderer;
+import com.mxgraph.view.mxGraph;
 import org.jgrapht.Graph;
+import org.jgrapht.ext.JGraphXAdapter;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.jgrapht.nio.dot.DOTExporter;
 import org.jgrapht.nio.dot.DOTImporter;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -37,6 +45,10 @@ public class myGraph {
         System.out.println(new myGraph(graph));
 
         outputGraph("C:\\Users\\sakur\\Downloads\\output.txt");
+
+        outputDOTGraph("C:\\Users\\sakur\\Downloads\\graph.dot");
+
+        outputGraphics("C:\\Users\\sakur\\Downloads\\image.jpg", "JPG");
     }
 
     public static void parseGraph(String filepath) throws IOException {
@@ -85,6 +97,24 @@ public class myGraph {
 
     public static void removeEdge(String srcLabel, String dstLabel) {
         graph.removeEdge(srcLabel, dstLabel);
+    }
+
+    public static void outputDOTGraph(String path) throws IOException {
+        DOTExporter<String, DefaultEdge> exporter = new DOTExporter<>();
+        Writer writer = new StringWriter();
+        exporter.exportGraph(graph, writer);
+
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path));
+        bufferedWriter.write(writer.toString());
+        bufferedWriter.close();
+    }
+
+    public static void outputGraphics(String path, String format) throws IOException {
+        JGraphXAdapter mxGraph = new JGraphXAdapter(graph);
+        mxIGraphLayout layout = new mxCircleLayout(mxGraph);
+        layout.execute(mxGraph.getDefaultParent());
+        BufferedImage image = mxCellRenderer.createBufferedImage(mxGraph, null, 1, Color.WHITE, true, null);
+        ImageIO.write(image, format, new File(path));
     }
 
 }
