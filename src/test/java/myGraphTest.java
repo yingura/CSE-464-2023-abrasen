@@ -16,7 +16,7 @@ class myGraphTest {
     @BeforeEach
     void setUp() throws IOException {
         myGraph = new myGraph();
-        myGraph.parseGraph("src/graphFiles/testGraph.dot");
+        myGraph.parseGraph("src/graphFilesTest/testGraph.dot");
     }
 
     @Test
@@ -35,8 +35,8 @@ class myGraphTest {
         );
 
         // Test outputGraph()
-        File file = new File("src/graphFiles/output.txt");
-        myGraph.outputGraph("src/graphFiles/output.txt");
+        File file = new File("src/graphFilesTest/output.txt");
+        myGraph.outputGraph("src/graphFilesTest/output.txt");
         assertTrue(file.exists());
         file.delete();
     }
@@ -94,20 +94,20 @@ class myGraphTest {
     @DisplayName("Feature 4")
     void featureFourTest() throws IOException {
         // Test outputDOTGraph()
-        File file = new File("src/graphFiles/output.dot");
-        myGraph.outputDOTGraph("src/graphFiles/output.dot");
+        File file = new File("src/graphFilesTest/output.dot");
+        myGraph.outputDOTGraph("src/graphFilesTest/output.dot");
         assertTrue(file.exists());
         file.delete();
 
         // Test outputGraphics() for PNG format
-        File file1 = new File("src/graphFiles/graphic.png");
-        myGraph.outputGraphics("src/graphFiles/graphic.png", "PNG");
+        File file1 = new File("src/graphFilesTest/graphic.png");
+        myGraph.outputGraphics("src/graphFilesTest/graphic.png", "PNG");
         assertTrue(file1.exists());
         file1.delete();
 
         // Test outputGraphics() for JPG format
-        File file2 = new File("src/graphFiles/graphic.jpg");
-        myGraph.outputGraphics("src/graphFiles/graphic.jpg", "JPG");
+        File file2 = new File("src/graphFilesTest/graphic.jpg");
+        myGraph.outputGraphics("src/graphFilesTest/graphic.jpg", "JPG");
         assertTrue(file2.exists());
         file2.delete();
     }

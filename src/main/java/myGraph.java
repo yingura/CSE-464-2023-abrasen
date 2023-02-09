@@ -31,6 +31,35 @@ public class myGraph {
 
     // Empty main function
     public static void main(String[] args) throws IOException {
+//        myGraph myGraph = new myGraph();
+//
+//        parseGraph("src/graphFiles/testGraph.dot");
+//        System.out.println("parseGraph:\n" + myGraph);
+//
+//        outputGraph("src/graphFiles/output.txt");
+//
+//        addNode("test");
+//        System.out.println("\naddNode:\n" + myGraph);
+//
+//        removeNode("test");
+//        System.out.println("\nremoveNode:\n" + myGraph);
+//
+//        addNodes(new String[]{"test", "test1", "test2", "test3"});
+//        System.out.println("\naddNodes:\n"myGraph);
+//
+//        removeNodes(new String[]{"test1", "test2", "test3"});
+//        System.out.println("\nremoveNodes:\n" + myGraph);
+//
+//        addEdge("0", "10");
+//        System.out.println("\naddEdge:\n" + myGraph);
+//
+//        removeEdge("0", "10");
+//        System.out.println("\nremoveEdge:\n" + myGraph);
+//
+//        outputDOTGraph("src/graphFiles/output.dot");
+//
+//        outputGraphics("src/graphFilesTest/graphic.jpg", "JPG");
+
 
     }
 
