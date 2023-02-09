@@ -57,4 +57,26 @@ public class myGraph {
         bufferedWriter.close();
     }
 
+    public static void addNode(String label) {
+        if(!graph.vertexSet().contains(label)) {
+            graph.addVertex(label);
+        }
+    }
+
+    public static void removeNode(String label) {
+        graph.removeVertex(label);
+    }
+
+    public static void addNodes(String[] label) {
+        for(int i = 0; i < label.length; i++){
+            addNode(label[i]);
+        }
+    }
+
+    public static void removeNodes(String[] label) {
+        for(int i = 0; i < label.length; i++) {
+            removeNode(label[i]);
+        }
+    }
+
 }
