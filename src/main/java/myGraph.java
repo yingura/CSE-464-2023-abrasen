@@ -18,31 +18,19 @@ import java.nio.file.Paths;
 
 public class myGraph {
     static Graph<String, DefaultEdge> graph;
-    static String nodeCount;
-    static String nodeLabels;
-    static String edgeCount;
-    static String direction;
-
-    myGraph(Graph<String, DefaultEdge> graph){
-        this.graph = graph;
-        this.nodeCount = graph.vertexSet().size() + "";
-        this.nodeLabels = graph.vertexSet() + "";
-        this.edgeCount = graph.edgeSet().size() + "";
-        this.direction = (graph.edgeSet() + "").replace(":", "->");
-    }
 
     @Override
     public String toString() {
-        return ("Number of nodes: " + nodeCount + "\n" +
-                "Label of the nodes: " + nodeLabels + "\n" +
-                "Number of edges: " + edgeCount + "\n" +
-                "Nodes and edge directions: " + direction);
+        return ("Number of nodes: " + graph.vertexSet().size() + "\n" +
+                "Label of the nodes: " + graph.vertexSet() + "\n" +
+                "Number of edges: " + graph.edgeSet().size() + "\n" +
+                "Nodes and edge directions: " + (graph.edgeSet() + "").replace(":", "->"));
     }
 
     public static void main(String[] args) throws IOException {
         parseGraph("C:\\Users\\sakur\\Downloads\\test.txt");
 
-        System.out.println(new myGraph(graph));
+        System.out.println(new myGraph());
 
         outputGraph("C:\\Users\\sakur\\Downloads\\output.txt");
 
@@ -61,7 +49,7 @@ public class myGraph {
     }
 
     public static void outputGraph(String filepath) throws IOException {
-        String content = (new myGraph(graph)).toString();
+        String content = (new myGraph()).toString();
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filepath));
         bufferedWriter.write(content);
         bufferedWriter.close();
